@@ -3,7 +3,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit } from "react-icons/fi";
 import DeleteWarning from './DeleteWarning';
 import { BiArrowBack } from "react-icons/bi";
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { editCity } from '../redux/citySlice';
 
 const CityRow = ({city}) => {

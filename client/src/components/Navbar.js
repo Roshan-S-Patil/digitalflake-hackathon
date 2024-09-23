@@ -11,7 +11,7 @@ const Navbar = ({toggleSidebar}) => {
     const [loggingout,setLoggingout]=useState(false)
 
   return (
-    <div className='bg-[#662671] p-3 flex justify-between items-center'>
+    <div className='bg-[#662671] p-3 flex justify-between items-center w-screen'>
         <RxHamburgerMenu className='sm:invisible' onClick={(e)=>{toggleSidebar()}}/>
       <img src={logo} alt="Logo" className='scale-50 sm:scale-75'/>
       <VscAccount className='fill-white scale-150 w-fit'onClick={()=>{setLoggingout(true)}}/>

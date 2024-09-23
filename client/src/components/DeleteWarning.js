@@ -3,6 +3,7 @@ import { IoIosWarning } from "react-icons/io";
 import { useDispatch } from 'react-redux';
 import { deleteState } from '../redux/stateSlice';
 import { deleteCity } from '../redux/citySlice';
+import { deleteWarehouse } from '../redux/warehouseSlice'
 
 const DeleteWarning = ({setDeleting,_id,page}) => {
   const dispatch=useDispatch()
@@ -13,7 +14,7 @@ const DeleteWarning = ({setDeleting,_id,page}) => {
     }else if(page==='city'){
       dispatch(deleteCity({_id}))
     }else if(page==='warehouse'){
-      // dispatch(deleteState({_id}))
+      dispatch(deleteWarehouse({_id}))
     }
   }
   return (

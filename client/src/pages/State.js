@@ -59,7 +59,7 @@ const State = () => {
         <div className='w-full h-full md:max-w-4xl lg:max-w-7xl sm:h-96 bg-white rounded-lg '>
       <p><BiArrowBack onClick={()=>setAddingState(false)} className=' scale-150 m-2' /></p>
           <h1 className='text-2xl font-bold ml-10'>ADD STATE</h1>
-      <div className='grid grid-flow-col gap-4 md:p-10'>
+      <div className='flex flex-wrap gap-4 py-10 px-2 md:p-10'>
        <input onChange={(e)=>{handleNewDetails(e)}} type="text" name='name' placeholder='Name' className='border border-gray-500 border-3 pl-3 rounded-lg'/>
        <input onChange={(e)=>{handleNewDetails(e)}} type="text" name='code' placeholder='State Code' className='border border-gray-500 border-3 pl-3 rounded-lg'/>
        <button className='text-white bg-[#662671] w-fit px-3 py-1 rounded-lg' onClick={()=>{dispatch(addState({name:newDetails.name,code:newDetails.code}));setAddingState(false)}} >Add</button>
