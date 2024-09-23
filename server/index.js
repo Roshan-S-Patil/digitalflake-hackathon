@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import userRoute from "./routes/userRoute.js"
 import stateRoute from './routes/stateRoute.js'
+import cityRoute from "./routes/cityRoute.js"
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 dotenv.config()
@@ -24,5 +25,6 @@ app.listen(PORT,()=>{
 })
 app.use("/user",userRoute)
 app.use("/state",stateRoute)
+app.use("/city",cityRoute)
 mongoose.connect(URI).then(()=>{console.log("Connected to databse")})
 .catch((error)=>{console.log({error})})

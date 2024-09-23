@@ -30,10 +30,10 @@ const editState=async(req,res)=>{
     }
 }
 const deleteState=async(req,res)=>{
-    const {_id}=req.body
+    const {_id}=req.query
     try {
         const deletedState=await State.findByIdAndDelete({_id})
-        res.status(200).send({deletedState}) 
+        res.status(200).send(deletedState) 
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

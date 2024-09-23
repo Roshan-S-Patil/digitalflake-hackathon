@@ -9,7 +9,7 @@ import { editState } from '../redux/stateSlice';
 
 const StateRow = ({state}) => {
   const dispatch=useDispatch()
-  const [deletingState,setDeletingState]=useState(false)
+  const [deleting,setDeleting]=useState(false)
   const [editingState,setEditingState]=useState(false)
   const [update,setUpdate]=useState({})
   const handleNewDetails=(e)=>{
@@ -17,7 +17,6 @@ const StateRow = ({state}) => {
     const {name,value}=e.target
     setUpdate({...update,[name]:value})
     }
-  
   return (
     <>
        <tr className='grid grid-cols-5 p-3'>
@@ -25,10 +24,10 @@ const StateRow = ({state}) => {
                   <td className='text-center'>{state.name}</td>
                   <td className='text-center'>{state.code}</td>
                   <td className={`text-center ${state.status==='active'?'text-green-600':'text-red-600'} font-semibold`}>{state.status.toUpperCase()}</td>
-                  <td className='text-center flex justify-center items-center gap-2 '><RiDeleteBin6Line onClick={()=>{setDeletingState(!deletingState)}} className='scale-125'/><FiEdit onClick={()=>{setEditingState(true)}} className='scale-125'/></td>
+                  <td className='text-center flex justify-center items-center gap-2 '><RiDeleteBin6Line onClick={()=>{setDeleting(!deleting)}} className='scale-125'/><FiEdit onClick={()=>{setEditingState(true)}} className='scale-125'/></td>
                 </tr>
-                {deletingState===true&&<>
-                  <DeleteWarning setDeletingState={setDeletingState} id={state._id}/>
+                {deleting===true&&<>
+                  <DeleteWarning setDeleting={setDeleting} _id={state._id} page={'state'}/>
                 </>}
                 {editingState&& <div className='top-0 left-0 z-50 w-full h-full absolute flex items-center justify-center bg-[#4a4d5259]'>
                   <div className='w-full h-full md:max-w-4xl lg:max-w-7xl sm:h-96 bg-white rounded-lg '>

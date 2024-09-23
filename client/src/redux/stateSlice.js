@@ -7,16 +7,15 @@ export const fetchStates=createAsyncThunk('fetchStates',async()=>{
 })
 export const addState=createAsyncThunk('addState',async({name,code})=>{
     const response=await axios.post("/state/add",{name,code},{headers:{"Content-Type":'application/json'}})
-    console.log(response.data)
     return response.data
 })
 export const editState=createAsyncThunk('editState',async({_id,update})=>{
     const response=await axios.put("/state/edit",{_id,update},{headers:{"Content-Type":'application/json'}})
-    console.log(response.data)
     return response.data
 })
 export const deleteState=createAsyncThunk('deleteState',async({_id})=>{
-    const response=await axios.post("/state/delete",{_id},{headers:{"Content-Type":'application/json'}})
+    const response=await axios.delete(`/state/delete?_id=${_id}`,{headers:{"Content-Type":'application/json'}})
+    console.log(response)
     return response.data
 })
 const stateSlice=createSlice({
@@ -73,12 +72,14 @@ const stateSlice=createSlice({
         })
         // DELETE STATE
         builder.addCase(deleteState.pending,(state)=>{
-            state.loadingState=false;
+            state.loadingState=true;
             state.stateError=false
         })
         builder.addCase(deleteState.fulfilled,(state,action)=>{
-            state.states=state.states.filter(state=>{return state._id!==action.payload._id});
+            state.states=state.states.filter((sta)=>{return sta._id!==action.payload._id});
+            console.log(state.states)
             state.stateError=false
+            state.loadingState=false
         })
         builder.addCase(deleteState.rejected,(state)=>{
             state.loadingState=false;

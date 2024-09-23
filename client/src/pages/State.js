@@ -13,7 +13,6 @@ const State = () => {
   const {states,stateLoading,stateError}=useSelector(state=> state.state)
   const [addingState,setAddingState]=useState(false)
   const [newDetails,setNewdetails]=useState({})
-  console.log(states)
   useEffect(()=>{
     dispatch(fetchStates())
   },[])
@@ -49,9 +48,9 @@ const State = () => {
                     </tr>
                 </thead>
                 <tbody >
-                  {stateLoading&& <h1>LOADING STATES</h1>}
-                  {stateError&& <h1>OOPS SOMETHING WENT WRONG</h1>}
-                  {states.map((state)=>{return <StateRow state={state}/>})}
+                  {stateLoading&& <p>LOADING STATES</p>}
+                  {stateError&& <p>OOPS SOMETHING WENT WRONG</p>}
+                  {states.map((state)=>{return <StateRow state={state} key={state._id}/>})}
                 </tbody>
             </table>
        </>:<><h1>NO STATES AVAILABLE</h1></>}
