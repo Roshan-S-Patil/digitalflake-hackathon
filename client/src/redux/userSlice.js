@@ -5,6 +5,10 @@ export const login=createAsyncThunk("login",async({email,password})=>{
         const response=await axios.post("/user/login",{email,password},{headers:{"Content-Type":"application/json"}})
         return response
 })
+export const logout=createAsyncThunk('logout',async()=>{
+        const response=await axios.post('/user/logout',{},{headers:{"Content-Type":"application/json"}})
+        return response.data
+})
 const userSlice=createSlice({
     name:'user',
     initialState:{
@@ -32,7 +36,21 @@ const userSlice=createSlice({
             state.loggingIn=false;
             state.userError=true;
         })
+        // Logut
+        builder.addCase(logout.pending,(state)=>{
+            state.loggingIn=true
+            state.userError=false
+        })
+        builder.addCase(logout.fulfilled,(state,action)=>{
+            state.loggingIn=false;
+            state.currentUser=null
+            localStorage.removeItem("user")
+            window.location.href="/login"
+        })
+        builder.addCase(logout.rejected,(state)=>{
+            state.loggingIn=false;
+            state.userError=true;
+        })
     }
 })
-export const {}=userSlice.actions
 export default userSlice.reducer

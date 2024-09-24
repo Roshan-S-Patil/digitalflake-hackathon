@@ -68,6 +68,16 @@ const login=async(req,res)=>{
     }
 }
 const logout=async(req,res)=>{
-
+      try {
+        // Clear the JWT token stored in the 'token' cookie
+        
+        res.clearCookie('uid');
+      
+        // Send a response indicating the user has been logged out
+        res.status(200).json({ message: 'Successfully logged out' });
+      } catch (error) {
+        console.log(error)
+        res.status(200).send(error)
+      }
 }
 export {getUser,signup,login,logout}

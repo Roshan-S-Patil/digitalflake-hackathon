@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import logo from "../assets/Group 2609047 (1) 9.png"
 import { VscAccount } from "react-icons/vsc";
 import { RxHamburgerMenu } from "react-icons/rx";
-
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
 const Navbar = ({toggleSidebar}) => {
+  const dispatch=useDispatch()
     // const handleHamburger=(e)=>{
     //     e.preventDefault()
     //     document.querySelector(".sidebar").classList.toggle("invisible")
@@ -23,7 +25,7 @@ const Navbar = ({toggleSidebar}) => {
        </div>
        
          <p className='text-center text-gray-500 sm:text-lg'>Are you sure you want to logout?</p>
-         <button onClick={()=>{setLoggingout(false)}} className='text-[#662671]'>Back</button> <button className='text-white bg-[#662671]'>Logout</button>
+         <button onClick={()=>{setLoggingout(false)}} className='text-[#662671]'>Back</button> <button className='text-white bg-[#662671]' onClick={()=>{dispatch(logout())}} >Logout</button>
        </div>
      </div>
       }
